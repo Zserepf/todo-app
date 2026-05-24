@@ -100,7 +100,10 @@
                 </button>
 
                 <!-- Todo content -->
-                <div class="flex-1 min-w-0">
+                <div
+                  class="flex-1 min-w-0 cursor-pointer"
+                  @click="openDetail(todo)"
+                >
                   <p
                     class="text-sm font-medium transition-colors duration-150"
                     :class="todo.status === 'done'
@@ -306,6 +309,15 @@
       </Transition>
     </Teleport>
 
+    <!-- Todo Detail Modal -->
+    <TodoDetailModal
+      :visible="showDetailModal"
+      :todo="detailTodo"
+      @update:visible="showDetailModal = $event"
+      @update="handleUpdateFromDetail"
+      @delete="handleDeleteFromDetail"
+    />
+
     <!-- Delete Confirmation Dialog -->
     <ConfirmDialog
       :visible="showDeleteConfirm"
@@ -327,7 +339,7 @@ import { reactive } from 'vue'
 import { useTodos } from '~/composables/useTodos'
 import { useAuth } from '~/composables/useAuth'
 import { useToast } from '~/composables/useToast'
-import type { Todo, TodoCreate } from '~/types'
+import type { Todo, TodoCreate, TodoUpdate } from '~/types'
 
 definePageMeta({
   layout: false,
@@ -353,6 +365,8 @@ const {
 // Local state
 const showCreateForm = ref(false)
 const showDeleteConfirm = ref(false)
+const showDetailModal = ref(false)
+const detailTodo = ref<Todo | null>(null)
 const todoToDelete = ref<Todo | null>(null)
 const creating = ref(false)
 const loggingOut = ref(false)
@@ -446,6 +460,29 @@ async function toggleTodoStatus(todo: Todo) {
 function confirmDelete(todo: Todo) {
   todoToDelete.value = todo
   showDeleteConfirm.value = true
+}
+
+// Open detail modal
+function openDetail(todo: Todo) {
+  detailTodo.value = todo
+  showDetailModal.value = true
+}
+
+async function handleUpdateFromDetail(id: string, data: TodoUpdate) {
+  const result = await updateTodo(id, data)
+  if (result) {
+    toastSuccess('Todo updated successfully')
+    // Update the detailTodo ref so the modal shows fresh data
+    detailTodo.value = result
+    await fetchStats()
+  } else {
+    toastError(todosError.value || 'Failed to update todo')
+  }
+}
+
+function handleDeleteFromDetail(todo: Todo) {
+  showDetailModal.value = false
+  confirmDelete(todo)
 }
 
 async function handleDeleteTodo() {
