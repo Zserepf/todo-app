@@ -1,14 +1,13 @@
-﻿[
-  {
-    "timestamp": "2026-05-21T00:00:00",
-    "prompt": "trying agent hooks"
-  },
-  {
-    "timestamp": "2026-05-21T00:00:00",
-    "prompt": "what does this repo do?"
-  },
-  {
-    "timestamp": "2026-05-21T00:00:00",
-    "prompt": "scan the auto update documentation hooks, how can i use it and how can i trigger it"
-  }
+[
+  {"timestamp": "2026-05-24T00:00:00", "prompt": "using AI DLC, I want to develop Unit 2"},
+  {"timestamp": "2026-05-24T00:01:00", "prompt": "ok lets do this!"},
+  {"timestamp": "2026-05-24T00:02:00", "prompt": "ok proceed to next"},
+  {"timestamp": "2026-05-24T00:03:00", "prompt": "Ok, lets do Unit 4"},
+  {"timestamp": "2026-05-24T00:04:00", "prompt": "from the AIDLC do unit 1"},
+  {"timestamp": "2026-05-24T00:05:00", "prompt": "APPROVEEEE AND CONOTINUEEEEEEE"},
+  {"timestamp": "2026-05-24T00:06:00", "prompt": "Now, how do i open the app? and what are the credentials?"},
+  {"timestamp": "2026-05-24T00:07:00", "prompt": "run it for me"},
+  {"timestamp": "2026-05-24T00:08:00", "prompt": "how do i merge changes in aidlc branch to the main"},
+  {"timestamp": "2026-05-24T00:09:00", "prompt": "i cant see the notifications in the menu"},
+  {"timestamp": "2026-05-24T00:10:00", "prompt": "no. just make sure that unit 1 is working then lets merge it to the main so that my other groupmates can now acceess it"}
 ]
